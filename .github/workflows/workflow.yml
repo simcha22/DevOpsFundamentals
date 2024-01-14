@@ -50,5 +50,5 @@ jobs:
         run: |
           scp -C -o StrictHostKeyChecking=no -i ./id_rsa ./deployment/bin/deploy.sh ${{ secrets.SSH_CONNECTION_STAGING }}:/home/simcha/deploy.sh
           scp -C -o StrictHostKeyChecking=no -i ./id_rsa ./id_rsa ${{ secrets.SSH_CONNECTION_STAGING }}:/home/simcha/.ssh/id_rsa
-          ssh -tt -o StrictHostKeyChecking=no -i ./id_rsa ${{ secrets.SSH_CONNECTION_STAGING }} "chown simcha:simcha /home/simcha/deploy.sh !, chmod +x /home/simcha/deploy.sh"
+          ssh -tt -o StrictHostKeyChecking=no -i ./id_rsa ${{ secrets.SSH_CONNECTION_STAGING }} "chown simcha:simcha /home/simcha/deploy.sh && chmod +x /home/simcha/deploy.sh"
           ssh -tt -o StrictHostKeyChecking=no -i ./id_rsa ${{ secrets.SSH_CONNECTION_STAGING }} "/home/simcha/deploy.sh ${{ secrets.MYSQL_PASSWORD }}"

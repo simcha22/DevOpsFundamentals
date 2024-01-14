@@ -55,3 +55,11 @@ sudo cp $PROJECT_DIR"/deployment/config/nginx.conf" /etc/nginx/nginx.conf
 sudo nginx -t
 sudo systemctl reload nginx
 
+apt install supervisor -y
+
+cp $PROJECT_DIR"/deployment/config/supervisord.conf" /etc/supervisor/conf.d/supervisord.conf
+# update the config
+supervisorctl update
+# restart workers (notice the : at the end. it refers to the process group)
+supervisorctl restart workers:
+
